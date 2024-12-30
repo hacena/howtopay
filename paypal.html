@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع عبر PayPal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #FFDEE9, #B5FFFC);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            border: 10px solid #0070BA;
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 700px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #0070BA;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .paypal-button {
+            margin-top: 20px;
+            display: inline-block;
+            background-color: #0070BA;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .paypal-button:hover {
+            background-color: #005EA6;
+            transform: scale(1.05);
+        }
+
+        .form-group {
+            margin-top: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28A745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 1rem;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ نافذة معلومات الدفع -->
+    <div class="container">
+        <h1>💳 الدفع عبر PayPal</h1>
+        <p>قم بالدفع عبر حساب PayPal الخاص بك بسهولة وأمان. يرجى النقر على الزر أدناه لإتمام عملية الدفع:</p>
+        
+        <a href="https://www.paypal.com" target="_blank" class="paypal-button">💸 الدفع عبر PayPal</a>
+        
+        <div class="form-group">
+            <label for="paymentReceipt">رفع صورة وصل الدفع</label>
+            <input type="file" id="paymentReceipt" name="paymentReceipt" accept="image/*" required>
+        </div>
+
+        <button id="submitPayment">إرسال تفاصيل الدفع</button>
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة © 2024
+    </footer>
+
+    <script>
+        document.getElementById('submitPayment').addEventListener('click', function(event) {
+            event.preventDefault();
+            const paymentReceipt = document.getElementById('paymentReceipt').files[0];
+            
+            if (!paymentReceipt) {
+                alert('يرجى رفع صورة وصل الدفع!');
+                return;
+            }
+
+            alert('تم إرسال التفاصيل بنجاح!');
+        });
+    </script>
+
+</body>
+</html>
