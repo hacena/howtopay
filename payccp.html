@@ -108,6 +108,11 @@
             font-weight: bold;
         }
 
+        .receipt-upload {
+            margin-top: 30px;
+            text-align: center;
+        }
+
         footer {
             margin-top: 30px;
             font-size: 1rem;
@@ -140,13 +145,23 @@
             <input type="text" id="sellerAccount" name="sellerAccount" placeholder="أدخل رقم الحساب البريدي" required>
         </div>
 
+        <div class="form-group">
+            <label for="paymentAmount">المبلغ (دج)</label>
+            <input type="number" id="paymentAmount" name="paymentAmount" placeholder="أدخل المبلغ" required>
+        </div>
+
+        <div class="form-group">
+            <label for="receipt">رفع وصل الدفع</label>
+            <input type="file" id="receipt" name="receipt" accept="image/*" required>
+        </div>
+
         <button id="updateDetails">تحديث التفاصيل</button>
     </div>
 
     <div class="payment-instructions">
         <p><strong>⚠️ تعليمات الدفع:</strong></p>
         <p>✅ اختر وسيلة دفع من هؤلاء.</p>
-        <p>✅ أرسل <strong>.... دج</strong> إلى:</p>
+        <p>✅ أرسل <strong><span id="displayAmount">....</span> دج</strong> إلى:</p>
         <p><strong>السيد: <span id="displaySellerName">الاسم...</span></strong></p>
         <p><strong>رقم الحساب البريدي: <span id="displaySellerAccount">.......</span></strong></p>
         <p>✅ لا تنس كتابة <strong>اسمك</strong> و <strong>رقم حسابك</strong> في الوصل.</p>
@@ -162,14 +177,17 @@
 
             const sellerName = document.getElementById('sellerName').value.trim();
             const sellerAccount = document.getElementById('sellerAccount').value.trim();
+            const paymentAmount = document.getElementById('paymentAmount').value.trim();
+            const receipt = document.getElementById('receipt').files[0];
 
-            if (!sellerName || !sellerAccount) {
-                alert('يرجى إدخال اسمك ورقم حسابك البريدي.');
+            if (!sellerName || !sellerAccount || !paymentAmount || !receipt) {
+                alert('يرجى ملء جميع الحقول ورفع صورة وصل الدفع.');
                 return;
             }
 
             document.getElementById('displaySellerName').textContent = sellerName;
             document.getElementById('displaySellerAccount').textContent = sellerAccount;
+            document.getElementById('displayAmount').textContent = paymentAmount;
 
             alert('تم تحديث التفاصيل بنجاح!');
         });
