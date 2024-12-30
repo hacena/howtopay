@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع عبر الحساب البريدي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #FFDEE9, #B5FFFC);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            border: 10px solid #4CAF50;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #388E3C;
+            transform: scale(1.05);
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .result h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+
+        .result p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>الدفع عبر الحساب البريدي (CCP)</h1>
+        <p>يرجى من عملائك إدخال التفاصيل التالية لإتمام عملية الدفع بنجاح.</p>
+
+        <div class="form-group">
+            <label for="accountNumber">رقم الحساب البريدي</label>
+            <input type="text" id="accountNumber" name="accountNumber" required placeholder="أدخل رقم الحساب البريدي" value="1234567890">
+        </div>
+
+        <div class="form-group">
+            <label for="name">اسم العميل</label>
+            <input type="text" id="name" name="name" required placeholder="أدخل اسمك" value="محمد علي">
+        </div>
+
+        <div class="form-group">
+            <label for="amount">المبلغ (دج)</label>
+            <input type="number" id="amount" name="amount" required placeholder="أدخل المبلغ الذي يجب دفعه" value="1500">
+        </div>
+
+        <div class="form-group">
+            <label for="paymentReceipt">رفع صورة وصل الدفع</label>
+            <input type="file" id="paymentReceipt" name="paymentReceipt" accept="image/*" required>
+        </div>
+
+        <div id="error-message" class="error"></div>
+
+        <button id="submitPayment">إرسال تفاصيل الدفع</button>
+
+        <div id="result" class="result" style="display:none;">
+            <h3>تفاصيل الدفع:</h3>
+            <p><strong>رقم الحساب البريدي:</strong> <span id="resAccount"></span></p>
+            <p><strong>اسم العميل:</strong> <span id="resName"></span></p>
+            <p><strong>المبلغ:</strong> <span id="resAmount"></span> دج</p>
+            <p><strong>وصل الدفع:</strong> <span id="resReceipt"></span></p>
+        </div>
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة © 2024
+    </footer>
+
+    <script>
+        document.getElementById('submitPayment').addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            const accountNumber = document.getElementById('accountNumber').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const amount = document.getElementById('amount').value.trim();
+            const paymentReceipt = document.getElementById('paymentReceipt').files[0];
+            
+            let errorMessage = '';
+            if (!accountNumber) {
+                errorMessage += 'رقم الحساب البريدي مطلوب.\n';
+            }
+            if (!name) {
+                errorMessage += 'اسم العميل مطلوب.\n';
+            }
+            if (!amount || isNaN(amount) || amount <= 0) {
+                errorMessage += 'المبلغ يجب أن يكون رقمًا صالحًا أكبر من 0.\n';
+            }
+            if (!paymentReceipt) {
+                errorMessage += 'يجب رفع صورة من وصل الدفع.\n';
+            }
+            
+            if (errorMessage) {
+                document.getElementById('error-message').textContent = errorMessage;
+            } else {
+                document.getElementById('error-message').textContent = '';
+                document.getElementById('resAccount').textContent = accountNumber;
+                document.getElementById('resName').textContent = name;
+                document.getElementById('resAmount').textContent = amount;
+                document.getElementById('resReceipt').textContent = paymentReceipt.name;
+                document.getElementById('result').style.display = 'block';
+
+                alert('تم إرسال تفاصيل الدفع بنجاح!');
+            }
+        });
+    </script>
+
+</body>
+</html>
