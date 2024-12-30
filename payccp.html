@@ -13,6 +13,7 @@
             background: linear-gradient(to bottom right, #FFDEE9, #B5FFFC);
             color: #333;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -22,12 +23,24 @@
 
         .container {
             max-width: 700px;
-            margin: 30px auto;
+            margin: 20px auto;
             padding: 30px;
             background: #ffffff;
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
+        }
+
+        .instruction {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            background: #f1f8e9;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #c8e6c9;
         }
 
         h1 {
@@ -110,10 +123,24 @@
             margin-top: 30px;
             font-size: 1rem;
             color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-center {
+            position: fixed;
+            bottom: 20px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+
+    <div class="instruction">
+        اختر وسيلة دفع من هؤلاء و وارسل <strong>....دج</strong> الى السيد/ <strong>الاسم ... القب...</strong> رقم الحساب البريدي <strong>....... </strong> لا تنس كتابة اسمك و رقم حسابك.
+    </div>
 
     <div class="container">
         <h1>الدفع عبر الحساب البريدي (CCP)</h1>
@@ -152,7 +179,7 @@
         </div>
     </div>
 
-    <footer>
+    <footer class="footer-center">
         جميع الحقوق محفوظة © 2024
     </footer>
 
@@ -166,29 +193,14 @@
             const paymentReceipt = document.getElementById('paymentReceipt').files[0];
             
             let errorMessage = '';
-            if (!accountNumber) {
-                errorMessage += 'رقم الحساب البريدي مطلوب.\n';
-            }
-            if (!name) {
-                errorMessage += 'اسم العميل مطلوب.\n';
-            }
-            if (!amount || isNaN(amount) || amount <= 0) {
-                errorMessage += 'المبلغ يجب أن يكون رقمًا صالحًا أكبر من 0.\n';
-            }
-            if (!paymentReceipt) {
-                errorMessage += 'يجب رفع صورة من وصل الدفع.\n';
-            }
+            if (!accountNumber) errorMessage += 'رقم الحساب البريدي مطلوب.\n';
+            if (!name) errorMessage += 'اسم العميل مطلوب.\n';
+            if (!amount || isNaN(amount) || amount <= 0) errorMessage += 'المبلغ يجب أن يكون رقمًا صالحًا.\n';
+            if (!paymentReceipt) errorMessage += 'يجب رفع صورة من وصل الدفع.\n';
             
             if (errorMessage) {
                 document.getElementById('error-message').textContent = errorMessage;
             } else {
-                document.getElementById('error-message').textContent = '';
-                document.getElementById('resAccount').textContent = accountNumber;
-                document.getElementById('resName').textContent = name;
-                document.getElementById('resAmount').textContent = amount;
-                document.getElementById('resReceipt').textContent = paymentReceipt.name;
-                document.getElementById('result').style.display = 'block';
-
                 alert('تم إرسال تفاصيل الدفع بنجاح!');
             }
         });
