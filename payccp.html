@@ -20,26 +20,42 @@
             box-sizing: border-box;
         }
 
-        .container {
+        .interactive-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
             max-width: 700px;
-            margin: 20px auto;
+            width: 90%;
+        }
+
+        .interactive-box p {
+            font-size: 1.2rem;
+            color: #4CAF50;
+            line-height: 2;
+        }
+
+        .interactive-box input {
+            font-size: 1rem;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            width: 80%;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-width: 700px;
             padding: 30px;
             background: #ffffff;
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 30px;
+            width: 90%;
         }
 
         .form-group {
@@ -81,38 +97,6 @@
             transform: scale(1.05);
         }
 
-        .error {
-            color: red;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .payment-instructions {
-            margin-top: 40px;
-            padding: 20px;
-            background: #f1f8e9;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 1.1rem;
-            color: #333;
-            line-height: 1.8;
-        }
-
-        .payment-instructions p {
-            margin: 10px 0;
-        }
-
-        .payment-instructions strong {
-            color: #388E3C;
-            font-weight: bold;
-        }
-
-        .receipt-upload {
-            margin-top: 30px;
-            text-align: center;
-        }
-
         footer {
             margin-top: 30px;
             font-size: 1rem;
@@ -120,76 +104,72 @@
             text-align: center;
             width: 100%;
         }
-
-        .footer-center {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>الدفع عبر الحساب البريدي (CCP)</h1>
-        <p>يرجى من عملائك إدخال التفاصيل التالية لإتمام عملية الدفع بنجاح.</p>
-
-        <div class="form-group">
-            <label for="sellerName">اسم البائع</label>
-            <input type="text" id="sellerName" name="sellerName" placeholder="أدخل اسمك" required>
-        </div>
-
-        <div class="form-group">
-            <label for="sellerAccount">رقم الحساب البريدي للبائع</label>
-            <input type="text" id="sellerAccount" name="sellerAccount" placeholder="أدخل رقم الحساب البريدي" required>
-        </div>
-
-        <div class="form-group">
-            <label for="paymentAmount">المبلغ (دج)</label>
-            <input type="number" id="paymentAmount" name="paymentAmount" placeholder="أدخل المبلغ" required>
-        </div>
-
-        <div class="form-group">
-            <label for="receipt">رفع وصل الدفع</label>
-            <input type="file" id="receipt" name="receipt" accept="image/*" required>
-        </div>
-
-        <button id="updateDetails">تحديث التفاصيل</button>
-    </div>
-
-    <div class="payment-instructions">
-        <p><strong>⚠️ تعليمات الدفع:</strong></p>
+    <!-- ✅ العبارة التفاعلية -->
+    <div class="interactive-box">
         <p>✅ اختر وسيلة دفع من هؤلاء.</p>
-        <p>✅ أرسل <strong><span id="displayAmount">....</span> دج</strong> إلى:</p>
-        <p><strong>السيد: <span id="displaySellerName">الاسم...</span></strong></p>
-        <p><strong>رقم الحساب البريدي: <span id="displaySellerAccount">.......</span></strong></p>
-        <p>✅ لا تنس كتابة <strong>اسمك</strong> و <strong>رقم حسابك</strong> في الوصل.</p>
+        <p>✅ أرسل 
+            <input type="number" id="dynamicAmount" placeholder="المبلغ" value="..."> دج إلى:</p>
+        <p>✅ السيد: 
+            <input type="text" id="dynamicName" placeholder="الاسم" value="..."></p>
+        <p>✅ رقم الحساب البريدي: 
+            <input type="text" id="dynamicAccount" placeholder="رقم الحساب" value="..."></p>
+        <p>✅ لا تنس كتابة 
+            <input type="text" id="dynamicClientName" placeholder="اسمك" value="..."> 
+            و 
+            <input type="text" id="dynamicClientAccount" placeholder="رقم حسابك" value="..."> في الوصل.</p>
     </div>
 
-    <footer class="footer-center">
+    <!-- ✅ نافذة المدخلات الإضافية -->
+    <div class="container">
+        <h1>تفاصيل إضافية للدفع</h1>
+        <div class="form-group">
+            <label for="paymentReceipt">رفع وصل الدفع</label>
+            <input type="file" id="paymentReceipt" name="paymentReceipt" accept="image/*" required>
+        </div>
+
+        <button id="submitPayment">إرسال التفاصيل</button>
+    </div>
+
+    <footer>
         جميع الحقوق محفوظة © 2024
     </footer>
 
     <script>
-        document.getElementById('updateDetails').addEventListener('click', function(event) {
+        // تحديث ديناميكي للحقول عند الكتابة
+        document.getElementById('dynamicAmount').addEventListener('input', function() {
+            document.getElementById('dynamicAmount').value = this.value;
+        });
+
+        document.getElementById('dynamicName').addEventListener('input', function() {
+            document.getElementById('dynamicName').value = this.value;
+        });
+
+        document.getElementById('dynamicAccount').addEventListener('input', function() {
+            document.getElementById('dynamicAccount').value = this.value;
+        });
+
+        document.getElementById('dynamicClientName').addEventListener('input', function() {
+            document.getElementById('dynamicClientName').value = this.value;
+        });
+
+        document.getElementById('dynamicClientAccount').addEventListener('input', function() {
+            document.getElementById('dynamicClientAccount').value = this.value;
+        });
+
+        document.getElementById('submitPayment').addEventListener('click', function(event) {
             event.preventDefault();
+            const receipt = document.getElementById('paymentReceipt').files[0];
 
-            const sellerName = document.getElementById('sellerName').value.trim();
-            const sellerAccount = document.getElementById('sellerAccount').value.trim();
-            const paymentAmount = document.getElementById('paymentAmount').value.trim();
-            const receipt = document.getElementById('receipt').files[0];
-
-            if (!sellerName || !sellerAccount || !paymentAmount || !receipt) {
-                alert('يرجى ملء جميع الحقول ورفع صورة وصل الدفع.');
+            if (!receipt) {
+                alert('يرجى رفع صورة وصل الدفع!');
                 return;
             }
 
-            document.getElementById('displaySellerName').textContent = sellerName;
-            document.getElementById('displaySellerAccount').textContent = sellerAccount;
-            document.getElementById('displayAmount').textContent = paymentAmount;
-
-            alert('تم تحديث التفاصيل بنجاح!');
+            alert('تم إرسال التفاصيل بنجاح!');
         });
     </script>
 
