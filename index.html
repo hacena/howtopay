@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق الدفع</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            margin: 30px auto;
+            max-width: 800px;
+            border: 5px solid #4CAF50;
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .video-container {
+            margin: 20px 0;
+        }
+        .reviews {
+            margin: 30px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        .payment-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+        }
+        .payment-options h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .payment-options a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>مرحباً بك في تطبيق الدفع</h1>
+    </header>
+    <div class="container">
+        <div class="welcome-message">
+            أهلاً بك! اكتشف كيف يعمل تطبيقنا بكل سهولة.
+        </div>
+        <div class="video-container">
+            <video controls width="100%">
+                <source src="video.mp4" type="video/mp4">
+                المتصفح لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+        <div class="reviews">
+            <h3>آراء العملاء</h3>
+            <p>"تجربة رائعة! سهل وسريع." - عميل سعيد</p>
+            <p>"أفضل تطبيق للدفع الإلكتروني!" - مستخدم موثوق</p>
+        </div>
+        <div class="payment-options">
+            <a href="ccp.html">الدفع عبر CCP</a>
+            <h2>اختر وسيلة دفع لشراء المنتج</h2>
+            <a href="paypal.html">الدفع عبر PayPal</a>
+        </div>
+    </div>
+    <footer>
+        <a href="privacy.html">سياسة الخصوصية</a> |
+        <a href="terms.html">سياسة الاستخدام</a> |
+        <a href="about.html">من نحن</a>
+    </footer>
+</body>
+</html>
