@@ -12,125 +12,119 @@
             margin: 0;
             padding: 0;
             background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         header {
             text-align: center;
             padding: 20px;
             background-color: #4CAF50;
             color: white;
-        }
-        .container {
-            text-align: center;
-            margin: 30px auto;
-            max-width: 800px;
-            border: 5px solid #4CAF50;
-            border-radius: 15px;
-            padding: 20px;
-            background-color: #fff;
-        }
-        .welcome-message {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .app-image img {
             width: 100%;
-            max-width: 600px;
-            display: block;
-            margin: 20px auto;
         }
-        .reviews {
-            margin: 30px 0;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-        }
-        .payment-options {
+        .main-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin: 30px 0;
+            margin: 20px auto;
+            width: 90%;
         }
-        .payment-options h2 {
-            font-size: 20px;
+        .welcome-section {
+            text-align: center;
+            width: 60%;
+            background-color: #fff;
+            border: 3px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .welcome-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .payment-links {
+            margin-top: 20px;
+        }
+        .payment-links a {
+            display: block;
+            margin: 10px 0;
+            font-size: 18px;
             font-weight: bold;
-        }
-        .payment-options a {
-            text-decoration: none;
             color: #4CAF50;
-            font-weight: bold;
-            font-size: 18px; /* تكبير حجم الروابط */
+            text-decoration: none;
+        }
+        .side-section {
+            width: 20%;
+            background-color: #f9f9f9;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 15px;
             margin: 0 10px;
         }
-        footer {
+        .side-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .app-image {
             text-align: center;
-            margin-top: 40px;
+            margin: 20px 0;
+        }
+        .app-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #4CAF50;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
             background-color: #4CAF50;
             color: white;
             padding: 15px 0;
+            width: 100%;
         }
         footer a {
             color: white;
             text-decoration: none;
             margin: 0 10px;
         }
-        .email-form, .settings-form {
-            margin-top: 20px;
-            text-align: left;
-            padding: 20px;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-        .email-form label, .settings-form label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        .email-form input, .settings-form input, .email-form textarea {
-            width: 100%;
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        .email-form button, .settings-form button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>مرحباً بك في تطبيق الدفع الإلكنروني</h1>
+        <h1>مرحباً بك في تطبيق الدفع الإلكتروني</h1>
     </header>
-    <div class="container">
-        <!-- إضافة صورة التطبيق -->
-        <div class="app-image">
-            <img src="imgjpg" alt="How to Pay" />
+    
+    <div class="app-image">
+        <img src="imgjpg" alt="صورة التطبيق">
+    </div>
+    
+    <div class="main-content">
+        <!-- نافذة إعدادات البريد الإلكتروني -->
+        <div class="side-section">
+            <h3>إعدادات البريد الإلكتروني</h3>
+            <form id="settings-form">
+                <label for="service_id">Service ID:</label>
+                <input type="text" id="service_id" name="service_id" required>
+                <label for="template_id">Template ID:</label>
+                <input type="text" id="template_id" name="template_id" required>
+                <label for="public_key">Public Key:</label>
+                <input type="text" id="public_key" name="public_key" required>
+                <button type="submit">حفظ الإعدادات</button>
+            </form>
         </div>
-
-        <div class="welcome-message">
-            أهلاً بك! اكتشف كيف يعمل تطبيقنا بكل سهولة.
+        
+        <!-- نافذة الترحيب وروابط البيع -->
+        <div class="welcome-section">
+            <h2>أهلاً بك! اكتشف كيف يعمل تطبيقنا</h2>
+            <div class="payment-links">
+                <a href="payccp.html">الدفع عبر CCP</a>
+                <a href="paypal.html">الدفع عبر PayPal</a>
+            </div>
         </div>
-      
-        <div class="reviews">
-            <h1><a href="avis-clients.html">قالوا عنا</a></h1>
-            <p>"تجربة رائعة! سهل وسريع." - عميل محترف</p>
-            <p>"أفضل تطبيق للدفع الإلكتروني" -</p>
-        </div>
-        <div class="payment-options">
-            <a href="payccp.html">الدفع عبر CCP</a>
-            <h2>اختر وسيلة دفع لشراء المنتج</h2>
-            <a href="paypal.html">الدفع عبر PayPal</a>
-        </div>
-
-        <!-- نموذج إرسال البريد -->
-        <div class="email-form">
-            <h2>تواصل معنا</h2>
+        
+        <!-- نافذة التواصل -->
+        <div class="side-section">
+            <h3>تواصل معنا</h3>
             <form id="email-form">
                 <label for="name">الاسم:</label>
                 <input type="text" id="name" name="name" required>
@@ -141,43 +135,22 @@
                 <button type="submit">إرسال</button>
             </form>
         </div>
-
-        <!-- نموذج إعدادات Email.js -->
-        <div class="settings-form">
-            <h2>إعدادات البريد الإلكتروني</h2>
-            <form id="settings-form">
-                <label for="service_id">Service ID:</label>
-                <input type="text" id="service_id" name="service_id" required>
-
-                <label for="template_id">Template ID:</label>
-                <input type="text" id="template_id" name="template_id" required>
-
-                <label for="public_key">Public Key:</label>
-                <input type="text" id="public_key" name="public_key" required>
-
-                <button type="submit">حفظ الإعدادات</button>
-            </form>
-        </div>
-
     </div>
-
+    
     <footer>
         <a href="privacy.html">سياسة الخصوصية</a> |
         <a href="terms.html">سياسة الاستخدام</a> |
         <a href="refund.html">سياسة الاسترجاع</a> |
         <a href="assistance.html">أطلب الدعم الفني 24/24</a>
     </footer>
-
-    <!-- إضافة سكربت Email.js -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        // تهيئة Email.js باستخدام Public Key
         const settings = JSON.parse(localStorage.getItem('emailjs_settings'));
         if (settings) {
             emailjs.init(settings.public_key);
         }
 
-        // إرسال البريد الإلكتروني
         document.getElementById('email-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(this);
@@ -186,25 +159,9 @@
                 email: formData.get('email'),
                 message: formData.get('message')
             };
-
             emailjs.send(settings.service_id, settings.template_id, templateParams)
-                .then(function(response) {
-                    alert('تم إرسال الرسالة بنجاح!');
-                }, function(error) {
-                    alert('حدث خطأ أثناء إرسال الرسالة!');
-                });
-        });
-
-        // حفظ إعدادات Email.js
-        document.getElementById('settings-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const settings = {
-                service_id: this.service_id.value,
-                template_id: this.template_id.value,
-                public_key: this.public_key.value
-            };
-            localStorage.setItem('emailjs_settings', JSON.stringify(settings));
-            alert('تم حفظ الإعدادات بنجاح!');
+                .then(response => alert('تم إرسال الرسالة بنجاح!'))
+                .catch(error => alert('حدث خطأ أثناء إرسال الرسالة!'));
         });
     </script>
 </body>
