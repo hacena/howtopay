@@ -32,8 +32,11 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
-        .video-container {
-            margin: 20px 0;
+        .app-image img {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 20px auto;
         }
         .reviews {
             margin: 30px 0;
@@ -56,6 +59,8 @@
             text-decoration: none;
             color: #4CAF50;
             font-weight: bold;
+            font-size: 18px; /* تكبير حجم الروابط */
+            margin: 0 10px;
         }
         footer {
             text-align: center;
@@ -103,6 +108,11 @@
         <h1>مرحباً بك في تطبيق الدفع الإلكنروني</h1>
     </header>
     <div class="container">
+        <!-- إضافة صورة التطبيق -->
+        <div class="app-image">
+            <img src="images/how_to_pay.png" alt="How to Pay" />
+        </div>
+
         <div class="welcome-message">
             أهلاً بك! اكتشف كيف يعمل تطبيقنا بكل سهولة.
         </div>
