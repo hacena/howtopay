@@ -88,12 +88,59 @@
             color: #777;
         }
 
-        /* إضافة تنسيق إطار */
         .payment-options a {
             border-radius: 10px;
             padding: 20px;
         }
 
+        /* نافذة إدخال الكود */
+        .code-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .code-popup .popup-content {
+            background: #FFF;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-popup input {
+            padding: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border: 1px solid #00897B;
+            border-radius: 8px;
+        }
+
+        .code-popup button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #00897B;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .code-popup button:hover {
+            background-color: #00796B;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -116,6 +163,31 @@
     <footer>
         &copy; 2024 جميع الحقوق محفوظة
     </footer>
+
+    <!-- نافذة إدخال الكود -->
+    <div id="code-popup" class="code-popup">
+        <div class="popup-content">
+            <h2>أدخل الكود لفتح التطبيق</h2>
+            <input type="text" id="activationCode" placeholder="أدخل الكود هنا">
+            <button onclick="verifyCode()">تأكيد</button>
+            <p class="error-message" id="error-message" style="display:none;">الكود غير صحيح. الرجاء المحاولة مجددًا.</p>
+        </div>
+    </div>
+
+    <script>
+        const correctCode = "123456";  // الكود الصحيح يمكن تعديله من الخادم أو قاعدة البيانات
+
+        function verifyCode() {
+            const userCode = document.getElementById('activationCode').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (userCode === correctCode) {
+                document.getElementById('code-popup').style.display = 'none'; // إغلاق النافذة عند صحة الكود
+            } else {
+                errorMessage.style.display = 'block';  // إظهار رسالة الخطأ
+            }
+        }
+    </script>
 
 </body>
 </html>
