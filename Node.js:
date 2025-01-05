@@ -1,0 +1,18 @@
+const admin = require('firebase-admin');
+
+// استخدم ملف Firebase Service Account (يمكنك تنزيله من Firebase Console)
+admin.initializeApp({
+    credential: admin.credential.cert('path/to/your-service-account-file.json')
+});
+
+// مثال على استخدام Firestore:
+const db = admin.firestore();
+
+// إضافة بيانات
+const docRef = db.collection('users').doc('userID');
+await docRef.set({
+    name: 'John Doe',
+    email: 'john@example.com'
+});
+
+console.log("Data added to Firestore.");
