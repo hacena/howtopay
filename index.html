@@ -3,186 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق الدفع الالكتروني</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>مرحبا بك في تطبيق الدفع الإلكتروني</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
         body {
             font-family: 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #ffecd2, #fcb69f);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: linear-gradient(to bottom right, #E3F2FD, #FFEBEE);
+            color: #333;
+            direction: rtl;
+            text-align: right;
         }
+
         header {
-            text-align: center;
-            padding: 20px;
-            background-color: #4CAF50;
+            background: #00897B;
             color: white;
-            width: 100%;
-        }
-        .main-content {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px auto;
-            width: 90%;
-        }
-        .welcome-section {
             text-align: center;
-            width: 60%;
-            background-color: #fff;
-            border: 3px solid #4CAF50;
+            padding: 20px 0;
+            font-size: 2rem;
             border-radius: 10px;
-            padding: 20px;
+            margin-bottom: 30px;
         }
-        .welcome-section h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #FFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #00897B;
         }
-        .payment-links {
-            margin-top: 20px;
+
+        h1 {
+            font-size: 2.5rem;
+            color: #00897B;
         }
-        .payment-links a {
-            display: block;
-            margin: 10px 0;
-            font-size: 18px;
-            font-weight: bold;
-            color: #4CAF50;
+
+        p {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .payment-options {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .payment-options a {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            color: white;
             text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
         }
-        .side-section {
-            width: 20%;
-            background-color: #f9f9f9;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 0 10px;
+
+        .payment-options .paypal {
+            background-color: #0070BA;
+            border: 2px solid #005EA6;
         }
-        .side-section h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+
+        .payment-options .paypal:hover {
+            background-color: #005EA6;
         }
-        .app-image {
-            text-align: center;
-            margin: 20px 0;
+
+        .payment-options .ccp {
+            background-color: #FF9800;
+            border: 2px solid #F57C00;
         }
-        .app-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            border: 2px solid #4CAF50;
+
+        .payment-options .ccp:hover {
+            background-color: #F57C00;
         }
-        .video-section {
-            width: 60%;
-            text-align: center;
-            margin: 20px 0;
-        }
-        .video-section video {
-            width: 100%;
-            border-radius: 10px;
-            border: 2px solid #4CAF50;
-        }
+
         footer {
-            margin-top: 30px;
             text-align: center;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 0;
-            width: 100%;
+            margin-top: 50px;
+            font-size: 1.2rem;
+            color: #777;
         }
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
+
+        /* إضافة تنسيق إطار */
+        .payment-options a {
+            border-radius: 10px;
+            padding: 20px;
         }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>مرحباً بك في تطبيق الدفع الإلكتروني</h1>
-    </header>
-    
-    <div class="app-image">
-        <img src="img.jpg" alt="jpg">
-    </div>
-    
-    <!-- إضافة الفيديو -->
-    <div class="video-section">
-        <h2>شاهد شرح التطبيق</h2>
-        <video controls>
-            <source src="videos/app-demo.mp4" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو.
-        </video>
-    </div>
-    
-    <div class="main-content">
-        <!-- نافذة إعدادات البريد الإلكتروني -->
-        <div class="side-section">
-            <h3>إعدادات البريد الإلكتروني</h3>
-            <form id="settings-form">
-                <label for="service_id">Service ID:</label>
-                <input type="text" id="service_id" name="service_id" required>
-                <label for="template_id">Template ID:</label>
-                <input type="text" id="template_id" name="template_id" required>
-                <label for="public_key">Public Key:</label>
-                <input type="text" id="public_key" name="public_key" required>
-                <button type="submit">حفظ الإعدادات</button>
-            </form>
-        </div>
-        
-        <!-- نافذة الترحيب وروابط البيع -->
-        <div class="welcome-section">
-            <h2>أهلاً بك، اختر وسيلة الدفع التي تناسبك</h2>
-            <div class="payment-links">
-                <a href="payccp.html">الدفع عبر CCP</a>
-                <a href="paypal.html">الدفع عبر PayPal</a>
-            </div>
-            <a href="contact.html">اتصل بنا</a> <!-- رابط صفحة الاتصال -->
-        </div>
-        
-        <!-- نافذة التواصل -->
-        <div class="side-section">
-            <h3>تواصل معنا</h3>
-            <form id="email-form">
-                <label for="name">الاسم:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">البريد الإلكتروني:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">الرسالة:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-                <button type="submit">إرسال</button>
-            </form>
-        </div>
-    </div>
-    
-    <footer>
-        <a href="privacy.html">سياسة الخصوصية</a> |
-        <a href="terms.html">سياسة الاستخدام</a> |
-        <a href="refund.html">سياسة الاسترجاع</a> |
-        <a href="assistance.html">أطلب الدعم الفني 24/24</a>
-    </footer>
-    
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        const settings = JSON.parse(localStorage.getItem('emailjs_settings'));
-        if (settings) {
-            emailjs.init(settings.public_key);
-        }
 
-        document.getElementById('email-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const templateParams = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-            emailjs.send(settings.service_id, settings.template_id, templateParams)
-                .then(response => alert('تم إرسال الرسالة بنجاح!'))
-                .catch(error => alert('حدث خطأ أثناء إرسال الرسالة!'));
-        });
-    </script>
+    <header>
+        مرحبا بك في تطبيق الدفع الإلكتروني <br>
+        الرجاء التواصل معنا قبل اختيار وسيلة دفع
+    </header>
+
+    <div class="container">
+        <h1>اختر وسيلة الدفع المناسبة</h1>
+        <p>يمكنك الدفع عبر PayPal أو CCP بطريقة آمنة وسهلة.</p>
+
+        <div class="payment-options">
+            <a href="paypalpay.html" class="paypal">الدفع عبر PayPal</a>
+            <a href="ccppay.html" class="ccp">الدفع عبر CCP</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 جميع الحقوق محفوظة
+    </footer>
+
 </body>
 </html>
